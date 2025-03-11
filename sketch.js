@@ -1,8 +1,10 @@
-let guy
+//varibles
+let creature
 let arms = []
 let body, Farm, BLarm, BRarm
+let active = 0
 
-
+//preload the art
 function preload() {
   body = loadImage("art/Body.svg")
   Farm = loadImage("art/FrontArm.svg")
@@ -13,8 +15,10 @@ function preload() {
 function setup() {
   createCanvas(windowWidth - 17, 5400);
 
-  guy = new crawler(windowWidth / 2, 100, body)
+  //making the body
+  creature = new crawler(windowWidth / 2, 100, body)
 
+  //making the arms
   arms.push(new arm(25, 30, Farm))
   arms.push(new arm(-25, 30, Farm))
   arms.push(new arm(30, -10, BRarm))
@@ -24,25 +28,47 @@ function setup() {
 function draw() {
   background(255);
 
-  guy.setrotation(mouseX, mouseY)
+  //moving the body
+  if (creature.active == true) {
+    creature.setrotation(mouseX, mouseY)
 
-  if (guy.distance(mouseX, mouseY) > 40) {
-    if ((guy.distance(mouseX, mouseY) / 20) > 1.4) {
-      guy.movement(1.4)
-    } else {
-      guy.movement((guy.distance(mouseX, mouseY) / 20))
+    if (creature.distance(mouseX, mouseY) > 40) {
+      if ((creature.distance(mouseX, mouseY) / 20) > 1.4) {
+        creature.movement(1.4)
+      } else {
+        creature.movement((creature.distance(mouseX, mouseY) / 20))
+      }
     }
   }
+  //moving the arms
+  arms[0].doArmStuff(creature.x, creature.y, creature.rotation)
+  arms[1].doArmStuff(creature.x, creature.y, creature.rotation)
+  arms[2].doArmStuff(creature.x, creature.y, creature.rotation)
+  arms[3].doArmStuff(creature.x, creature.y, creature.rotation)
 
-  arms[0].doArmStuff(guy.x, guy.y, guy.rotation)
-  arms[1].doArmStuff(guy.x, guy.y, guy.rotation)
-  arms[2].doArmStuff(guy.x, guy.y, guy.rotation)
-  arms[3].doArmStuff(guy.x, guy.y, guy.rotation)
-
+  //showing the legs
   arms[0].show()
   arms[1].show()
   arms[2].show()
   arms[3].show()
 
-  guy.show()
+  //showing the body
+  creature.show()
+}
+
+//activing the "creature"
+function mousePressed() {
+  activor(creature.x, creature.y, creature)
+}
+
+function activor(dx, dy, guy) {
+  if (mouseX < dx + 50 && mouseX > dx - 50) {
+    if (mouseY < dy + 50 && mouseY > dy - 50) {
+      if (guy.active == true) {
+        guy.active = false
+      } else {
+        guy.active = true
+      }
+    }
+  }
 }

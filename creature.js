@@ -5,6 +5,7 @@ class crawler {
         this.y = y
         this.body = body
         this.rotation = 0
+        this.creature = false
     }
 
     show() {
@@ -14,8 +15,6 @@ class crawler {
         translate(this.x, this.y, 10)
         rotate(this.rotation + 90)
         image(this.body, 0, 0)
-
-
         pop()
     }
 
@@ -39,6 +38,7 @@ class crawler {
         this.x -= (power * sin(this.rotation))
         this.y += (power * cos(this.rotation))
     }
+
 }
 
 class arm {
@@ -66,6 +66,7 @@ class arm {
         pop()
     }
 
+    //Math for moving the legs and stuff
     doArmStuff(dx, dy, drotation) {
         this.pointx = dx
         this.pointy = dy
@@ -106,3 +107,4 @@ class arm {
         this.rotation = (atan((this.x - dx) / (dy - this.y))) + (180 * num)
     }
 }
+
