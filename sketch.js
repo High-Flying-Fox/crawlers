@@ -1,12 +1,13 @@
 //varibles
 let creature
 let arms = []
-let body, Farm, BLarm, BRarm
+let body, bodyoff, Farm, BLarm, BRarm
 let active = 0
 
 //preload the art
 function preload() {
   body = loadImage("art/Body.svg")
+  bodyoff = loadImage("art/BodyOff.svg")
   Farm = loadImage("art/FrontArm.svg")
   BLarm = loadImage("art/BLarm.svg")
   BRarm = loadImage("art/BRarm.svg")
@@ -16,7 +17,7 @@ function setup() {
   createCanvas(windowWidth - 17, 5400);
 
   //making the body
-  creature = new crawler(windowWidth / 2, 100, body)
+  creature = new crawler(windowWidth / 2, 100, body, bodyoff)
 
   //making the arms
   arms.push(new arm(25, 30, Farm))
