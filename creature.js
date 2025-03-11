@@ -1,11 +1,12 @@
 class crawler {
 
-    constructor(x, y, body) {
+    constructor(x, y, body, bodyoff) {
         this.x = x
         this.y = y
         this.body = body
+        this.bodyoff = bodyoff
         this.rotation = 0
-        this.creature = false
+        this.active = false
     }
 
     show() {
@@ -14,7 +15,12 @@ class crawler {
         angleMode(DEGREES)
         translate(this.x, this.y, 10)
         rotate(this.rotation + 90)
-        image(this.body, 0, 0)
+        if (this.active == true) {
+            image(this.body, 0, 0)
+        } else {
+            image(this.bodyoff, 0, 0)
+        }
+        
         pop()
     }
 
