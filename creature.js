@@ -7,9 +7,18 @@ class crawler {
         this.bodyoff = bodyoff
         this.rotation = 0
         this.active = false
+        this.targetx = this.x
+        this.targety = this.y
+        this.arms = []
     }
 
     show() {
+
+        this.arms[0].show()
+        this.arms[1].show()
+        this.arms[2].show()
+        this.arms[3].show()
+
         push()
         imageMode(CENTER)
         angleMode(DEGREES)
@@ -45,6 +54,30 @@ class crawler {
         this.y += (power * cos(this.rotation))
     }
 
+    settarget(dx, dy) {
+        this.targetx = dx
+        this.targety = dy
+    }
+
+    creatureStuff() {
+        if (this.active == true) {
+            this.setrotation(this.targetx, this.targety)
+        
+            if (this.distance(this.targetx, this.targety) > 40) {
+              if ((this.distance(this.targetx, this.targety) / 20) > 1.4) {
+                this.movement(1.4)
+              } else {
+                this.movement((this.distance(this.targetx, this.targety) / 20))
+              }
+            }
+        }
+
+        this.arms[0].doArmStuff(this.x, this.y, this.rotation)
+        this.arms[1].doArmStuff(this.x, this.y, this.rotation)
+        this.arms[2].doArmStuff(this.x, this.y, this.rotation)
+        this.arms[3].doArmStuff(this.x, this.y, this.rotation)
+        
+    }
 }
 
 class arm {
