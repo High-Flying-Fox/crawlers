@@ -64,8 +64,8 @@ class crawler {
             this.setrotation(this.targetx, this.targety)
         
             if (this.distance(this.targetx, this.targety) > 40) {
-              if ((this.distance(this.targetx, this.targety) / 20) > 1.4) {
-                this.movement(1.4)
+              if ((this.distance(this.targetx, this.targety) / 20) > 10) {
+                this.movement(10)
               } else {
                 this.movement((this.distance(this.targetx, this.targety) / 20))
               }
