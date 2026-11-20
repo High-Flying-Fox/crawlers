@@ -10,6 +10,7 @@ class crawler {
         this.targetx = this.x
         this.targety = this.y
         this.arms = []
+        this.speed = 2
     }
 
     show() {
@@ -64,8 +65,8 @@ class crawler {
             this.setrotation(this.targetx, this.targety)
         
             if (this.distance(this.targetx, this.targety) > 40) {
-              if ((this.distance(this.targetx, this.targety) / 20) > 10) {
-                this.movement(10)
+              if ((this.distance(this.targetx, this.targety) / 20) > this.speed) {
+                this.movement(this.speed)
               } else {
                 this.movement((this.distance(this.targetx, this.targety) / 20))
               }
